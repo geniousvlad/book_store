@@ -8,12 +8,15 @@ export default (state = initialState, action) => {
         case 'ADD_BOOK':
             return {
                 ...state,
-                items: action.payload,
+                items: [
+                    ...state.items,
+                    action.payload
+                ],
             };
         case 'REMOVE_BOOK':
             return {
                 ...state,
-                isReady: action.payload
+                items: state.items.filter(o => o.id != action.payload)
             };
             break;
         default:
